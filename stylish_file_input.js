@@ -1,7 +1,7 @@
 (function() {
   var StylishFileInput;
   StylishFileInput = (function() {
-    var _buildUI, _hideInput, _registerEventHandlers;
+    var _buildUI, _hideInput;
     function StylishFileInput(htmlFileInputElement, text) {
       if (text == null) {
         text = "Choose File";
@@ -13,7 +13,6 @@
     }
     _buildUI = function() {
       var inputSibling, label, parentNode, textSpan;
-      console.log("build UI");
       parentNode = this._input.parentNode;
       label = document.createElement("label");
       label.className = "stylish-file-input";
@@ -21,6 +20,7 @@
       parentNode.insertBefore(label, inputSibling);
       label.appendChild(this._input);
       textSpan = document.createElement("span");
+      textSpan.className = "text";
       textSpan.innerHTML = this._text;
       label.insertBefore(textSpan, this._input);
       this._label = label;
@@ -36,18 +36,10 @@
       input.style.position = "absolute";
       input.style.right = "0px";
       input.style.top = "0px";
-      input.style.opacity = 0;
       input.style.cursor = "pointer";
-      return input.style.fontSize = "500px";
-    };
-    _registerEventHandlers = function() {
-      var $label;
-      $label = $(this._label);
-      return $label.hover((function(e) {
-        return $label.addClass("state-hover");
-      }), (function(e) {
-        return $label.removeClass("state-hover");
-      }));
+      input.style.fontSize = "500px";
+      input.style.opacity = 0;
+      return input.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
     };
     return StylishFileInput;
   })();

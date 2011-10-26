@@ -7,11 +7,8 @@ class StylishFileInput
         @_label = null
         
         _buildUI.call this
-        # _registerEventHandlers.call this
 
-    _buildUI = ->
-        console.log "build UI"
-        
+    _buildUI = ->        
         parentNode = @_input.parentNode
         label = document.createElement "label"
         label.className = "stylish-file-input"
@@ -19,6 +16,7 @@ class StylishFileInput
         parentNode.insertBefore label, inputSibling
         label.appendChild @_input
         textSpan = document.createElement "span"
+        textSpan.className = "text"
         textSpan.innerHTML = @_text
         label.insertBefore textSpan, @_input
 
@@ -36,17 +34,11 @@ class StylishFileInput
         input.style.position = "absolute"
         input.style.right = "0px"
         input.style.top = "0px"
-        input.style.opacity = 0
         input.style.cursor = "pointer"
         input.style.fontSize = "500px"
-    
-    _registerEventHandlers = ->
-        $label = $(@_label)
-        $label.hover ((e)->
-            $label.addClass "state-hover"
-        ), ((e)->
-            $label.removeClass "state-hover"
-        )
+        input.style.opacity = 0
+        # IE hacks
+        input.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)'
 
 window.StylishFileInput = StylishFileInput
   
