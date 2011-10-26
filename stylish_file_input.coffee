@@ -1,3 +1,6 @@
+# The JavaScript files are technically not necessary. 
+# You can hand-craft the HTML. The result will be the same.
+
 do (window) ->
     exports = window
 
