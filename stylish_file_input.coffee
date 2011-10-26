@@ -1,44 +1,34 @@
-class StylishFileInput
+do (window) ->
+    exports = window
 
-    constructor: (htmlFileInputElement, text = "Choose File") ->
-        @_input = htmlFileInputElement
-        @_text = text
-
-        @_label = null
-        
-        _buildUI.call this
-
-    _buildUI = ->        
-        parentNode = @_input.parentNode
+    stylizeFileInput = (htmlFileInputElement, text = "Choose File") ->
+        parentNode = htmlFileInputElement.parentNode
         label = document.createElement "label"
         label.className = "stylish-file-input"
-        inputSibling = @_input.nextSibling
+        inputSibling = htmlFileInputElement.nextSibling
         parentNode.insertBefore label, inputSibling
-        label.appendChild @_input
+        label.appendChild htmlFileInputElement
         textSpan = document.createElement "span"
         textSpan.className = "text"
-        textSpan.innerHTML = @_text
-        label.insertBefore textSpan, @_input
+        textSpan.innerHTML = text
+        label.insertBefore textSpan, htmlFileInputElement
 
-        @_label = label
-
-        _hideInput.call this
+        _hideInput label, htmlFileInputElement   
         
-    _hideInput = ->
-        label = @_label
-        label.style.position = "relative"
-        label.style.display = "inline-block"
-        label.style.overflow = "hidden"
+    _hideInput = (label, input) ->
+        labelStyle = label.style
+        labelStyle.position = "relative"
+        labelStyle.display = "inline-block"
+        labelStyle.overflow = "hidden"
 
-        input = @_input
-        input.style.position = "absolute"
-        input.style.right = "0px"
-        input.style.top = "0px"
-        input.style.cursor = "pointer"
-        input.style.fontSize = "500px"
-        input.style.opacity = 0
-        # IE hacks
-        input.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)'
+        inputStyle = input.style
+        inputStyle.position = "absolute"
+        inputStyle.right = "0px"
+        inputStyle.top = "0px"
+        inputStyle.cursor = "pointer"
+        inputStyle.fontSize = "500px"
+        inputStyle.opacity = 0
+        # for IE
+        inputStyle.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)'
 
-window.StylishFileInput = StylishFileInput
-  
+    exports.stylizeFileInput = stylizeFileInput

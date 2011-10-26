@@ -1,47 +1,39 @@
 (function() {
-  var StylishFileInput;
-  StylishFileInput = (function() {
-    var _buildUI, _hideInput;
-    function StylishFileInput(htmlFileInputElement, text) {
+  (function(window) {
+    var exports, stylizeFileInput, _hideInput;
+    exports = window;
+    stylizeFileInput = function(htmlFileInputElement, text) {
+      var inputSibling, label, parentNode, textSpan;
       if (text == null) {
         text = "Choose File";
       }
-      this._input = htmlFileInputElement;
-      this._text = text;
-      this._label = null;
-      _buildUI.call(this);
-    }
-    _buildUI = function() {
-      var inputSibling, label, parentNode, textSpan;
-      parentNode = this._input.parentNode;
+      parentNode = htmlFileInputElement.parentNode;
       label = document.createElement("label");
       label.className = "stylish-file-input";
-      inputSibling = this._input.nextSibling;
+      inputSibling = htmlFileInputElement.nextSibling;
       parentNode.insertBefore(label, inputSibling);
-      label.appendChild(this._input);
+      label.appendChild(htmlFileInputElement);
       textSpan = document.createElement("span");
       textSpan.className = "text";
-      textSpan.innerHTML = this._text;
-      label.insertBefore(textSpan, this._input);
-      this._label = label;
-      return _hideInput.call(this);
+      textSpan.innerHTML = text;
+      label.insertBefore(textSpan, htmlFileInputElement);
+      return _hideInput(label, htmlFileInputElement);
     };
-    _hideInput = function() {
-      var input, label;
-      label = this._label;
-      label.style.position = "relative";
-      label.style.display = "inline-block";
-      label.style.overflow = "hidden";
-      input = this._input;
-      input.style.position = "absolute";
-      input.style.right = "0px";
-      input.style.top = "0px";
-      input.style.cursor = "pointer";
-      input.style.fontSize = "500px";
-      input.style.opacity = 0;
-      return input.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+    _hideInput = function(label, input) {
+      var inputStyle, labelStyle;
+      labelStyle = label.style;
+      labelStyle.position = "relative";
+      labelStyle.display = "inline-block";
+      labelStyle.overflow = "hidden";
+      inputStyle = input.style;
+      inputStyle.position = "absolute";
+      inputStyle.right = "0px";
+      inputStyle.top = "0px";
+      inputStyle.cursor = "pointer";
+      inputStyle.fontSize = "500px";
+      inputStyle.opacity = 0;
+      return inputStyle.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
     };
-    return StylishFileInput;
-  })();
-  window.StylishFileInput = StylishFileInput;
+    return exports.stylizeFileInput = stylizeFileInput;
+  })(window);
 }).call(this);
