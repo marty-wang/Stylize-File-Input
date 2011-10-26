@@ -1,0 +1,11 @@
+.stylish-file-input {
+    margin: 20px;
+}
+
+.stylish-file-input:hover {
+    color: green;
+}
+
+.stylish-file-input:active {
+    color: red
+}
