@@ -1,8 +1,11 @@
 # The JavaScript files are technically not necessary. 
 # You can hand-craft the HTML. The result will be the same.
 
-do (window) ->
-    exports = window
+# replace "window" with any namespace
+# which you want the method attached to
+exports = window
+
+do (exports) ->
 
     stylizeFileInput = (htmlFileInputElement, text = "Choose File") ->
         parentNode = htmlFileInputElement.parentNode

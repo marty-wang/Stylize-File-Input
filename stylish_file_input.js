@@ -1,7 +1,8 @@
 (function() {
-  (function(window) {
-    var exports, stylizeFileInput, _hideInput;
-    exports = window;
+  var exports;
+  exports = window;
+  (function(exports) {
+    var stylizeFileInput, _hideInput;
     stylizeFileInput = function(htmlFileInputElement, text) {
       var inputSibling, label, parentNode, textSpan;
       if (text == null) {
@@ -35,5 +36,5 @@
       return inputStyle.filter = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
     };
     return exports.stylizeFileInput = stylizeFileInput;
-  })(window);
+  })(exports);
 }).call(this);
