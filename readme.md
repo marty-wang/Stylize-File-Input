@@ -1,4 +1,4 @@
-This little project provides the proven method to stylize the file input html element to work across Chrome, Safari, Firefox and IE 7-9.
+This little project provides the proven method to stylize the file input html element to work across Chrome, Safari, Firefox and IE 7+.
 
 The JavaScript files are technically not necessary. You can hand-craft the HTML. The result will be the same.
 
